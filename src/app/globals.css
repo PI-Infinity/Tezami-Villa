@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "MineFont";
+  src: url("/fonts/Orelo-Extended-Trial-Bold-BF674e80755e390.otf")
+    format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* globals.css */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(40%);
+  }
+  100% {
+    transform: translateX(-105%);
+  }
+}
+@keyframes slideMobile {
+  0% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(-105%);
+  }
+}
+
+.logos {
+  animation: slide 20s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .logos {
+    animation: slideMobile 30s linear infinite;
+  }
+}
+
+.logos-slide {
+  display: flex;
+  width: 100%;
+}
+
+/* from bottom to top*/
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.slide-in-top {
+  animation: slideInFromBottom 0.5s ease-out forwards;
+}
+/* from right to left*/
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.slide-in-left {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
+/* from left to rigth*/
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.slide-in-right {
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+/* scale up*/
+@keyframes scaleUp {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.scale-up {
+  animation: scaleUp 0.5s ease-out forwards;
+}
+
+/* Add this to your CSS file or a <style> block in your component */
+.placeholder-white::placeholder {
+  color: #e5e5e5;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-in-out forwards;
+}
+
+.animate-slide-out {
+  animation: slide-out 0.3s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideUp2 {
+  from {
+    transform: translateY(160px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slideUp2 {
+  animation: slideUp 1s ease-in-out;
+}
