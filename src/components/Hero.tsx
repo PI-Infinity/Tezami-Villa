@@ -1,128 +1,32 @@
 "use client";
 import Link from "next/link";
+import { useAppContext } from "@/context/app";
+import "../app/tezami-hero.css";
+
+const translations: any = {
+  GE: {
+    subtitle: "პრივატული აუზი • მთის ვილა",
+    location: "წყავკისი • ტყე • მდინარე • მთები",
+    cta: "დაჯავშნა",
+  },
+  EN: {
+    subtitle: "Private Pool Mountain Villa",
+    location: "Tskhvarichamia • Forest • River • Mountains",
+    cta: "Reserve Villa",
+  },
+  RU: {
+    subtitle: "Приватный бассейн • Горная Вилла",
+    location: "Цхваричамия • Лес • Река • Горы",
+    cta: "Забронировать виллу",
+  },
+};
 
 export default function Hero() {
+  const { language } = useAppContext();
+  const t = translations[language.toUpperCase()] || translations.GE;
+
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400&display=swap');
-
-        .hero {
-          position: relative;
-          height: 100vh;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          overflow: hidden;
-          color: #F5F1E8;
-        }
-
-        .hero img {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transform: scale(1.05);
-          transition: transform 8s ease;
-        }
-
-        .hero:hover img {
-          transform: scale(1.1);
-        }
-
-        .overlay-dark {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.45),
-            rgba(0,0,0,0.75)
-          );
-        }
-
-        .overlay-light {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(
-            circle at center,
-            rgba(255,255,255,0.05),
-            transparent 70%
-          );
-        }
-
-        .content {
-          position: relative;
-          z-index: 2;
-          max-width: 900px;
-          padding: 0 20px;
-          animation: fadeIn 1.8s ease forwards;
-          opacity: 0;
-        }
-
-        @keyframes fadeIn {
-          to { opacity: 1; }
-        }
-
-        .title {
-          font-family: 'DM Serif Display', serif;
-          font-size: clamp(3rem, 6vw, 5.5rem);
-          letter-spacing: 14px;
-          margin-bottom: 25px;
-        }
-
-        .subtitle {
-          font-family: 'Inter', sans-serif;
-          font-weight: 300;
-          letter-spacing: 4px;
-          text-transform: uppercase;
-          font-size: 0.9rem;
-          opacity: 0.85;
-          margin-bottom: 15px;
-        }
-
-        .location {
-          font-size: 0.8rem;
-          letter-spacing: 5px;
-          opacity: 0.6;
-          margin-bottom: 45px;
-        }
-
-        .cta {
-          padding: 14px 42px;
-          border: 1px solid rgba(245,241,232,0.7);
-          border-radius: 60px;
-          text-transform: uppercase;
-          letter-spacing: 3px;
-          font-size: 0.75rem;
-          transition: all .4s ease;
-        }
-
-        .cta:hover {
-          background: rgba(245,241,232,0.1);
-          transform: translateY(-3px);
-        }
-
-        .scroll {
-          position: absolute;
-          bottom: 40px;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.7rem;
-          letter-spacing: 4px;
-          opacity: 0.5;
-          animation: scrollAnim 2.5s infinite;
-        }
-
-        @keyframes scrollAnim {
-          0% { opacity: 0; transform: translate(-50%, 8px); }
-          50% { opacity: 1; transform: translate(-50%, 0); }
-          100% { opacity: 0; transform: translate(-50%, 8px); }
-        }
-      `}</style>
-
       <section className="hero">
         <img src="/tezami-hero.jpeg" alt="Tezami Villa" />
         <div className="overlay-dark" />
@@ -130,11 +34,11 @@ export default function Hero() {
 
         <div className="content">
           <h1 className="title">TEZAMI VILLA</h1>
-          <div className="subtitle">Private Pool Mountain Villa</div>
-          <div className="location">Tsavkisi • Forest • River • Mountains</div>
+          <div className="subtitle">{t.subtitle}</div>
+          <div className="location">{t.location}</div>
 
           <Link href="#contact" className="cta">
-            Reserve Villa
+            {t.cta}
           </Link>
         </div>
 

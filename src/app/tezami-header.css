@@ -1,0 +1,180 @@
+:root {
+  --dark: #192519;
+  --gold: #d5b037;
+  --light: #ffffff;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.8rem 0;
+  transition: all 0.4s ease;
+}
+.header.scrolled {
+  background: rgba(25, 37, 25, 0.92);
+  backdrop-filter: blur(18px);
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social {
+  display: flex;
+  gap: 18px;
+}
+
+.social a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: 0.3s;
+  display: flex;
+}
+
+.social a:hover {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.logo {
+  position: relative;
+  width: 90px;
+  height: 60px;
+  margin-right: auto;
+  margin-left: 40px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav a {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: var(--gold);
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: #fff;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.cta {
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transition: 0.3s;
+}
+
+.cta:hover {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: rgba(213, 176, 55, 0.06);
+}
+
+.lang {
+  display: flex;
+  gap: 12px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+}
+
+.lang button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lang button.active {
+  color: var(--gold);
+}
+
+.menu-btn {
+  display: none;
+  font-size: 1.6rem;
+  color: white;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 280px;
+  background: var(--dark);
+  padding: 100px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  transform: translateX(100%);
+  transition: 0.4s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0%);
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+  .nav {
+    display: none;
+  }
+  .menu-btn {
+    display: block;
+  }
+  .social {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 25px;
+  }
+}
+
+/* დანარჩენი CSS მთლიანად */

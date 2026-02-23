@@ -1,102 +1,100 @@
+"use client";
+
 import React from "react";
-import { Facebook, Instagram, Phone, MessageCircle } from "lucide-react";
-import Img from "./image";
+import {
+  Facebook,
+  Instagram,
+  Phone,
+  MessageCircle,
+  MapPin,
+} from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
-  // ✅ შეცვალე ლინკები/ნომერი
-  const whatsappNumber = "995577138372";
-  const whatsappText = "Hello, I want to rent a premium car in Georgia.";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    whatsappText,
-  )}`;
+  const whatsappNumber = "995599205588";
+  const whatsappText =
+    "Hello, I would like to check availability for Tezami Villa.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
 
-  const phone = "+995577138372";
+  const phone = "+995599205588";
   const phoneUrl = `tel:${phone.replace(/\s/g, "")}`;
 
   return (
-    <footer className="w-full bg-[#080808] border-t border-white/10">
-      <div className="mx-auto py-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 px-4 sm:px-36">
-          {/* Brand */}
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-3">
-              <div className="h-12 w-12">
-                <Img
-                  alt="LUX CAR RENT logo"
-                  style={{ width: "100%", height: "100%" }}
-                  src={require("../../public/logo.png")}
+    <footer className="w-full bg-[#141a17] border-t border-white/10">
+      <div className="max-w-[1400px] mx-auto py-16 px-6 sm:px-8 lg:px-16 flex flex-col gap-12">
+        {/* TOP SECTION */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          {/* BRAND */}
+          <div className="md:col-span-5 flex flex-col gap-6">
+            <div className="flex items-center gap-4">
+              <div className="h-14 w-14 relative">
+                <Image
+                  src="/tezami-logo.png"
+                  alt="Tezami Villa logo"
+                  fill
+                  style={{ objectFit: "contain" }}
                 />
               </div>
               <div>
-                <div className="text-white font-extrabold tracking-wide">
-                  LUX CAR RENT
+                <div className="text-white font-extrabold tracking-wider text-lg">
+                  TEZAMI VILLA
                 </div>
-                <div className="text-xs text-white/60">
-                  Premium rental cars in Georgia
+                <div className="text-xs text-white/50 uppercase tracking-[0.3em]">
+                  Private Premium Retreat
                 </div>
               </div>
             </div>
 
-            <p className="mt-4 text-sm text-white/70 max-w-md leading-relaxed">
-              Premium SUVs and cars with fast WhatsApp booking, delivery
-              options, and local support in Georgia.
+            <p className="text-sm text-white/70 max-w-md leading-relaxed">
+              Experience comfort, privacy, and premium relaxation in a peaceful
+              setting.
             </p>
 
-            {/* quick actions */}
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            {/* QUICK ACTIONS */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href={whatsappUrl}
-                className="
-                  inline-flex items-center justify-center gap-2
-                  rounded-2xl px-5 py-3
-                  font-extrabold text-sm
-                  bg-[#D4AF37] text-black
-                  shadow-xl shadow-black/25
-                  hover:brightness-110 active:scale-[0.99] transition
-                "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-bold text-sm bg-[#D4AF37] text-black shadow-xl shadow-black/30 hover:brightness-110 active:scale-[0.98] transition"
               >
                 <MessageCircle size={18} />
-                WhatsApp
+                Check Availability
               </a>
 
               <a
                 href={phoneUrl}
-                className="
-                  inline-flex items-center justify-center gap-2
-                  rounded-2xl px-5 py-3
-                  font-extrabold text-sm
-                  bg-white/10 text-white
-                  border border-white/15
-                  hover:bg-white/15 active:scale-[0.99] transition
-                "
+                className="inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-bold text-sm bg-white/10 text-white border border-white/15 hover:bg-white/15 active:scale-[0.98] transition"
               >
                 <Phone size={18} />
-                Call
+                Call Now
               </a>
             </div>
           </div>
 
-          {/* Links */}
-          <div className="md:col-span-3">
-            <div className="text-white font-extrabold">Pages</div>
-            <div className="mt-4 grid gap-3 text-sm">
+          {/* PAGES */}
+          <div className="md:col-span-3 flex flex-col gap-6">
+            <div className="text-white font-bold text-sm uppercase tracking-wider">
+              Explore
+            </div>
+            <div className="flex flex-col gap-3">
               <a
-                href="#cars"
+                href="#about"
                 className="text-white/70 hover:text-white transition"
               >
-                Cars
+                About The Villa
               </a>
               <a
-                href="#prices"
+                href="#gallery"
                 className="text-white/70 hover:text-white transition"
               >
-                Prices
+                Gallery
               </a>
               <a
-                href="#faq"
+                href="#services"
                 className="text-white/70 hover:text-white transition"
               >
-                FAQ
+                Services
               </a>
               <a
                 href="#contact"
@@ -107,74 +105,65 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Socials */}
-          <div className="md:col-span-4">
-            <div className="text-white font-extrabold">Social</div>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <a
-                href="https://www.facebook.com/"
-                className="
-                  inline-flex items-center gap-2
-                  rounded-2xl px-4 py-3
-                  border border-white/10 bg-white/5
-                  text-white/75 hover:text-white hover:bg-white/10 transition
-                "
-              >
-                <Facebook size={18} />
-                Facebook
-              </a>
+          {/* CONTACT & SOCIAL */}
+          <div className="md:col-span-4 flex flex-col gap-6">
+            <div className="text-white font-bold text-sm uppercase tracking-wider">
+              Contact
+            </div>
 
-              <a
-                href="https://www.instagram.com/"
-                className="
-                  inline-flex items-center gap-2
-                  rounded-2xl px-4 py-3
-                  border border-white/10 bg-white/5
-                  text-white/75 hover:text-white hover:bg-white/10 transition
-                "
-              >
-                <Instagram size={18} />
-                Instagram
-              </a>
+            <div className="flex flex-col gap-3 text-sm text-white/70">
+              <div className="flex items-center gap-2">
+                <MapPin size={16} />
+                Georgia
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone size={16} />
+                {phone}
+              </div>
+            </div>
 
-              {/* თუ TikTok გინდა მაგრამ icon არ გინდა, ტექსტით იყოს */}
+            <div className="flex flex-wrap gap-3 mt-4">
               <a
-                href="https://www.tiktok.com/"
-                className="
-                  inline-flex items-center gap-2
-                  rounded-2xl px-4 py-3
-                  border border-white/10 bg-white/5
-                  text-white/75 hover:text-white hover:bg-white/10 transition
-                "
+                href="https://www.facebook.com/TezamiVilla"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-2xl px-4 py-3 border border-white/10 bg-white/5 text-white/75 hover:text-white hover:bg-white/10 transition"
               >
-                TikTok
+                <Facebook size={18} /> Facebook
+              </a>
+              <a
+                href="https://www.instagram.com/tezamivilla/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-2xl px-4 py-3 border border-white/10 bg-white/5 text-white/75 hover:text-white hover:bg-white/10 transition"
+              >
+                <Instagram size={18} /> Instagram
               </a>
             </div>
 
-            <p className="mt-4 text-xs text-white/55">
-              For partnerships or long-term rentals, message us anytime.
+            <p className="mt-6 text-xs text-white/50">
+              For private bookings and special requests, contact us anytime.
             </p>
           </div>
         </div>
 
-        {/* bottom bar */}
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 items-center justify-between px-32">
-          <p className="text-xs text-white/55">
-            © {new Date().getFullYear()} LUX CAR RENT — All rights reserved.
+        {/* BOTTOM BAR */}
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 items-center justify-between">
+          <p className="text-xs text-white/50">
+            © {new Date().getFullYear()} TEZAMI VILLA — All rights reserved.
           </p>
-
-          <div className="flex gap-4 text-xs">
+          <div className="flex gap-6 text-xs">
             <a
               href="#terms"
-              className="text-white/55 hover:text-white transition"
+              className="text-white/50 hover:text-white transition"
             >
               Terms
             </a>
             <a
               href="#privacy"
-              className="text-white/55 hover:text-white transition"
+              className="text-white/50 hover:text-white transition"
             >
-              Privacy
+              Privacy Policy
             </a>
           </div>
         </div>

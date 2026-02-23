@@ -1,26 +1,33 @@
 "use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import Cookies from "js-cookie";
+import { useAppContext } from "@/context/app";
+import "../app/tezami-header.css";
 
 const translations: any = {
   GE: {
     about: "ჩვენს შესახებ",
-    rooms: "საძინებლები",
+    rooms: "სერვისები",
     gallery: "გალერეა",
     contact: "კონტაქტი",
     book: "დაჯავშნა",
   },
   EN: {
     about: "About",
-    rooms: "Rooms",
+    rooms: "Services",
     gallery: "Gallery",
     contact: "Contact",
     book: "Reserve",
   },
   RU: {
     about: "О нас",
-    rooms: "Комнаты",
+    rooms: "Services",
     gallery: "Галерея",
     contact: "Контакт",
     book: "Бронировать",
@@ -29,152 +36,77 @@ const translations: any = {
 
 export default function TezamiHeader() {
   const [scrolled, setScrolled] = useState(false);
-  const [lang, setLang] = useState<any>("GE");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const t = translations[lang];
+  const { language } = useAppContext();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // ✅ პირდაპირ ვიყენებთ language-ს (hydration-safe)
+  const currentLang = language?.toUpperCase() || "GE";
+  const t = translations[currentLang] || translations.GE;
 
   const navLinks = [
     { href: "#about", label: t.about },
-    { href: "#rooms", label: t.rooms },
+    { href: "#services", label: t.rooms },
     { href: "#gallery", label: t.gallery },
     { href: "#contact", label: t.contact },
   ];
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const changeLanguage = (lang: string) => {
+    localStorage.setItem("sarko-events:language", lang);
+    Cookies.set("language", lang, { expires: 30, path: "/" });
+
+    const segments = pathname.split("/");
+    segments[1] = lang;
+    router.push(segments.join("/"));
+  };
+
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400&display=swap');
-
-        .header {
-          position: fixed;
-          top: 0;
-          width: 100%;
-          z-index: 1000;
-          padding: 2.2rem 0;
-          transition: all .4s ease;
-        }
-
-        .header.scrolled {
-          background: rgba(12,14,13,0.82);
-          backdrop-filter: blur(18px);
-          padding: 1.2rem 0;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .container {
-          max-width: 1500px;
-          margin: 0 auto;
-          padding: 0 70px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        .logo {
-          font-family: 'DM Serif Display', serif;
-          font-size: 1.6rem;
-          letter-spacing: 10px;
-          color: #EAE3D2;
-          text-decoration: none;
-        }
-
-        .nav {
-          display: flex;
-          align-items: center;
-          gap: 60px;
-        }
-
-        .nav a {
-          font-family: 'Inter', sans-serif;
-          font-weight: 300;
-          font-size: 0.82rem;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.65);
-          text-decoration: none;
-          transition: .3s;
-        }
-
-        .nav a:hover {
-          color: #EAE3D2;
-        }
-
-        .cta {
-          padding: 10px 28px;
-          border: 1px solid rgba(234,227,210,0.6);
-          border-radius: 40px;
-          font-size: 0.75rem;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: #EAE3D2;
-          transition: .4s;
-        }
-
-        .cta:hover {
-          background: rgba(234,227,210,0.08);
-        }
-
-        .lang {
-          display: flex;
-          gap: 12px;
-          margin-left: 40px;
-          font-size: 0.7rem;
-          letter-spacing: 2px;
-        }
-
-        .lang button {
-          background: none;
-          border: none;
-          color: rgba(255,255,255,0.4);
-          cursor: pointer;
-          transition: .3s;
-        }
-
-        .lang button.active {
-          color: #EAE3D2;
-        }
-
-        .social {
-          display: flex;
-          gap: 18px;
-        }
-
-        .social svg {
-          color: rgba(255,255,255,0.5);
-          transition: .3s;
-          font-size: 0.9rem;
-        }
-
-        .social svg:hover {
-          color: #EAE3D2;
-        }
-
-        @media(max-width: 1100px){
-          .nav { display: none; }
-        }
-      `}</style>
-
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
         <div className="container">
           <div className="social">
-            <FaInstagram />
-            <FaFacebookF />
+            <a
+              href="https://instagram.com/yourprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://facebook.com/yourpage"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebookF />
+            </a>
           </div>
 
           <Link href="/" className="logo">
-            TV
+            <Image
+              src="/tezami-logo.png"
+              alt="Tezami Villa"
+              fill
+              priority
+              style={{ objectFit: "contain" }}
+            />
           </Link>
 
-          <div className="nav">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                {link.label}
+          <nav className="nav">
+            {navLinks.map((l) => (
+              <Link key={l.href} href={l.href}>
+                {l.label}
               </Link>
             ))}
 
@@ -182,8 +114,8 @@ export default function TezamiHeader() {
               {["GE", "EN", "RU"].map((l) => (
                 <button
                   key={l}
-                  className={lang === l ? "active" : ""}
-                  onClick={() => setLang(l)}
+                  className={currentLang === l ? "active" : ""}
+                  onClick={() => changeLanguage(l.toLowerCase())}
                 >
                   {l}
                 </button>
@@ -193,9 +125,21 @@ export default function TezamiHeader() {
             <Link href="#contact" className="cta">
               {t.book}
             </Link>
+          </nav>
+
+          <div className="menu-btn" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <HiOutlineX /> : <HiOutlineMenu />}
           </div>
         </div>
       </header>
+
+      <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
+        {navLinks.map((l) => (
+          <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)}>
+            {l.label}
+          </Link>
+        ))}
+      </div>
     </>
   );
 }
