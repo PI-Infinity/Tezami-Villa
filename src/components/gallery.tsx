@@ -6,11 +6,24 @@ import "yet-another-react-lightbox/styles.css";
 import "../app/tezami-gallery.css";
 
 const images = [
-  "/tezami-hero.jpeg",
-  "/tezami-hero.jpeg",
-  "/tezami-hero.jpeg",
-  "/tezami-hero.jpeg",
-  "/tezami-hero.jpeg",
+  "/14.webp",
+  // "/0.1.webp",
+  "/1.0.webp",
+  "/1.5.webp",
+  "/4.0.webp",
+  "/3.3.webp",
+  "/3.6.webp",
+  "/4.2.webp",
+  "/5.webp",
+  "/2.0.webp",
+  "/6.webp",
+  // "/7.webp",
+  "/8.webp",
+  // "/9.webp",
+  // "/10.webp",
+  "/11.webp",
+  // "/12.webp",
+  "/13.webp",
 ];
 
 export default function ModernGallery() {

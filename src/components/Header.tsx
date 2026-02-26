@@ -133,7 +133,10 @@ export default function TezamiHeader() {
         </div>
       </header>
 
-      <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
+      <div
+        style={{ zIndex: "100" }}
+        className={`mobile-menu ${mobileOpen ? "open" : ""}`}
+      >
         {navLinks.map((l) => (
           <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)}>
             {l.label}
