@@ -13,10 +13,12 @@ const translations: any = {
       {
         title: "ღონისძიებების ორგანიზება",
         text: "დაბადების დღეები, კორპორატიული ივენთები და კერძო შეკრებები სრულად ორგანიზებული პრემიუმ სტანდარტით.",
+        page: "events",
       },
       {
         title: "ტურები",
         text: "ინდივიდუალური და ჯგუფური ტურები ღვინის მარშრუტებით, ბუნებრივი ლოკაციებით და კულტურული გამოცდილებებით.",
+        page: "tours",
       },
     ],
     extraTitle: "დამატებითი აქტივობები",
@@ -32,10 +34,12 @@ const translations: any = {
       {
         title: "Event Organization",
         text: "Birthday parties, corporate events, and private gatherings organized with premium standards.",
+        page: "events",
       },
       {
         title: "Tours",
         text: "Individual and group tours featuring wine routes, natural landscapes, and cultural experiences.",
+        page: "tours",
       },
     ],
     extraTitle: "Additional Activities",
@@ -51,10 +55,12 @@ const translations: any = {
       {
         title: "Организация мероприятий",
         text: "Дни рождения, корпоративные мероприятия и частные встречи, организованные по премиальным стандартам.",
+        page: "events",
       },
       {
         title: "Туры",
         text: "Индивидуальные и групповые туры с винными маршрутами, природными локациями и культурными впечатлениями.",
+        page: "tours",
       },
     ],
     extraTitle: "Дополнительные активности",
@@ -65,19 +71,6 @@ const translations: any = {
 };
 
 export const Services = () => {
-  const services = [
-    {
-      icon: <CalendarDays size={26} />,
-      title: "ღონისძიებების ორგანიზება",
-      text: "დაბადების დღეები, კორპორატიული ივენთები და კერძო შეკრებები სრულად ორგანიზებული პრემიუმ სტანდარტით.",
-    },
-    {
-      icon: <Map size={26} />,
-      title: "ტურები",
-      text: "ინდივიდუალური და ჯგუფური ტურები ღვინის მარშრუტებით, ბუნებრივი ლოკაციებით და კულტურული გამოცდილებებით.",
-    },
-  ];
-
   const { language } = useAppContext();
   const t = translations[language.toUpperCase()] || translations.GE;
 
@@ -94,9 +87,10 @@ export const Services = () => {
 
           <div className="tez-services__grid">
             {t.services.map((service: any, i: number) => (
-              <motion.div
+              <motion.a
+                href={`${language}/${service?.page}`}
                 key={i}
-                className="tez-services__item"
+                className="tez-services__item cursor-pointer"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -105,7 +99,7 @@ export const Services = () => {
                 <div className="tez-services__icon">{icons[i]}</div>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 

@@ -9,6 +9,8 @@ import {
   MapPin,
 } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useAppContext } from "@/context/app";
 
 export default function Footer() {
   const whatsappNumber = "995599205588";
@@ -18,6 +20,8 @@ export default function Footer() {
 
   const phone = "+995599205588";
   const phoneUrl = `tel:${phone.replace(/\s/g, "")}`;
+
+  const { language } = useAppContext();
 
   return (
     <footer className="w-full bg-[#141a17] border-t border-white/10">
@@ -154,13 +158,13 @@ export default function Footer() {
           </p>
           <div className="flex gap-6 text-xs">
             <a
-              href="#terms"
+              href={`${language}/terms`}
               className="text-white/50 hover:text-white transition"
             >
               Terms
             </a>
             <a
-              href="#privacy"
+              href={`${language}/privacy`}
               className="text-white/50 hover:text-white transition"
             >
               Privacy Policy

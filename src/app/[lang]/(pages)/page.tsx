@@ -12,7 +12,6 @@ import { usePathname } from "next/navigation";
 
 export default function Home() {
   const { loading, language } = useAppContext();
-  const pathname = usePathname();
 
   return (
     <main
