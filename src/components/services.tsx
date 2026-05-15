@@ -86,21 +86,24 @@ export const Services = () => {
           </div>
 
           <div className="tez-services__grid">
-            {t.services.map((service: any, i: number) => (
-              <motion.a
-                href={`${language}/${service?.page}`}
-                key={i}
-                className="tez-services__item cursor-pointer"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: i * 0.15 }}
-              >
-                <div className="tez-services__icon">{icons[i]}</div>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </motion.a>
-            ))}
+            {t.services.map((service: any, i: number) => {
+              console.log(service?.page);
+              return (
+                <motion.a
+                  href={`${language}/${service?.page}`}
+                  key={i}
+                  className="tez-services__item cursor-pointer"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: i * 0.15 }}
+                >
+                  <div className="tez-services__icon">{icons[i]}</div>
+                  <h3>{service.title}</h3>
+                  <p>{service.text}</p>
+                </motion.a>
+              );
+            })}
           </div>
 
           <div className="tez-services__extra">

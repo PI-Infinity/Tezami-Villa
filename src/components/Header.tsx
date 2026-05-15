@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Cookies from "js-cookie";
 import { useAppContext } from "@/context/app";
@@ -12,24 +11,12 @@ import "../app/tezami-header.css";
 
 const translations: any = {
   GE: {
-    about: "ჩვენს შესახებ",
-    rooms: "სერვისები",
-    gallery: "გალერეა",
-    contact: "კონტაქტი",
     book: "დაჯავშნა",
   },
   EN: {
-    about: "About",
-    rooms: "Services",
-    gallery: "Gallery",
-    contact: "Contact",
     book: "Reserve",
   },
   RU: {
-    about: "О нас",
-    rooms: "Services",
-    gallery: "Галерея",
-    contact: "Контакт",
     book: "Бронировать",
   },
 };
@@ -43,16 +30,8 @@ export default function TezamiHeader() {
   const pathname = usePathname();
   const router = useRouter();
 
-  // ✅ პირდაპირ ვიყენებთ language-ს (hydration-safe)
   const currentLang = language?.toUpperCase() || "GE";
   const t = translations[currentLang] || translations.GE;
-
-  const navLinks = [
-    { href: "#about", label: t.about },
-    { href: "#services", label: t.rooms },
-    { href: "#gallery", label: t.gallery },
-    { href: "#contact", label: t.contact },
-  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -67,32 +46,14 @@ export default function TezamiHeader() {
     const segments = pathname.split("/");
     segments[1] = lang;
     router.push(segments.join("/"));
+    setMobileOpen(false);
   };
 
   return (
     <>
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
-        <div className="container">
-          <div className="social">
-            <a
-              href="https://instagram.com/yourprofile"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-
-            <a
-              href="https://facebook.com/yourpage"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <FaFacebookF />
-            </a>
-          </div>
-
+        <div className="container" style={{ justifyContent: "space-between" }}>
+          {/* მხოლოდ ლოგო, რომელიც გადადის მთავარ გვერდზე */}
           <Link href="/" className="logo">
             <Image
               src="/tezami-logo.png"
@@ -103,13 +64,11 @@ export default function TezamiHeader() {
             />
           </Link>
 
-          <nav className="nav">
-            {navLinks.map((l) => (
-              <Link key={l.href} href={l.href}>
-                {l.label}
-              </Link>
-            ))}
-
+          {/* მარჯვენა მხარე: ენები და ქმედება */}
+          <nav
+            className="nav"
+            style={{ display: "flex", alignItems: "center", gap: "2rem" }}
+          >
             <div className="lang">
               {["GE", "EN", "RU"].map((l) => (
                 <button
@@ -127,21 +86,52 @@ export default function TezamiHeader() {
             </Link>
           </nav>
 
+          {/* მობილურის მენიუს ღილაკი */}
           <div className="menu-btn" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <HiOutlineX /> : <HiOutlineMenu />}
           </div>
         </div>
       </header>
 
+      {/* მობილური მენიუ (ენების გადასართავად და დასაჯავშნად) */}
       <div
         style={{ zIndex: "100" }}
         className={`mobile-menu ${mobileOpen ? "open" : ""}`}
       >
-        {navLinks.map((l) => (
-          <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)}>
-            {l.label}
-          </Link>
-        ))}
+        <div
+          className="lang"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "1rem",
+            marginBottom: "2rem",
+          }}
+        >
+          {["GE", "EN", "RU"].map((l) => (
+            <button
+              key={l}
+              className={currentLang === l ? "active" : ""}
+              onClick={() => changeLanguage(l.toLowerCase())}
+              style={{ color: "white", fontSize: "1.2rem" }}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+
+        <Link
+          href="#contact"
+          className="cta"
+          onClick={() => setMobileOpen(false)}
+          style={{
+            display: "block",
+            textAlign: "center",
+            margin: "0 auto",
+            maxWidth: "200px",
+          }}
+        >
+          {t.book}
+        </Link>
       </div>
     </>
   );

@@ -5,7 +5,7 @@ import "../app/tezami-hero.css";
 
 const translations: any = {
   GE: {
-    subtitle: "პრივატული აუზი • მთის ვილა",
+    subtitle: "აუზი • მთის ვილა",
     location: "წყავკისი • ტყე • მდინარე • მთები",
     cta: "დაჯავშნა",
   },
