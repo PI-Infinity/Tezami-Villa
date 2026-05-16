@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CalendarDays, Map, Sparkles } from "lucide-react";
 import { useAppContext } from "@/context/app";
 import "../app/tezami-services.css";
+import Link from "next/link";
 
 const translations: any = {
   GE: {
@@ -76,6 +77,11 @@ export const Services = () => {
 
   const icons = [<CalendarDays size={26} />, <Map size={26} />];
 
+  const whatsappNumber = "995599205588";
+  const whatsappText =
+    "Hello, I would like to check availability for Tezami Villa.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
   return (
     <>
       <section className="tez-services" id="services">
@@ -110,7 +116,13 @@ export const Services = () => {
             <Sparkles size={32} style={{ marginBottom: 20, opacity: 0.6 }} />
             <h3>{t.extraTitle}</h3>
             <p>{t.extraText}</p>
-            <div className="tez-services__cta">{t.cta}</div>
+            <Link
+              href={whatsappUrl}
+              target="_blank"
+              className="tez-services__cta"
+            >
+              {t.cta}
+            </Link>
           </div>
         </div>
       </section>

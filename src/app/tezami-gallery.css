@@ -78,8 +78,15 @@
 }
 
 @media (max-width: 768px) {
+  .tez-gallery {
+    padding: 48px 0;
+  }
   .tez-gallery__item--large {
     grid-column: span 1;
     grid-row: span 1;
+  }
+
+  .tez-gallery__container {
+    padding: 0 24px;
   }
 }

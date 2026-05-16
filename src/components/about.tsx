@@ -5,11 +5,11 @@ import "../app/tezami-about.css";
 
 const translations: any = {
   GE: {
-    small: "Tezami შესახებ",
+    small: "Tezami-ს შესახებ",
     title1: "პირადი სივრცე",
     title2: "ტყესა და მდინარეს შორის",
-    text: `Tezami არის ორსართულიანი კერძო ვილა, რომელიც ცავკისის
-ბუნებრივ ლანდშაფტში მდებარეობს. ტყით, მდინარით და
+    text: `Tezami არის ორსართულიანი კერძო ვილა, რომელიც თბილისის
+ეროვნულ პარკში მდებარეობს. ტყით, მდინარით და
 მთის ხედებით გარშემორტყმული სივრცე გთავაზობთ სრულ
 კონფიდენციალურობას და დახვეწილ კომფორტს.
 შექმნილია მშვიდი დილებისთვის და დაუვიწყარი საღამოებისთვის.`,
@@ -19,26 +19,25 @@ const translations: any = {
   },
   EN: {
     small: "About Tezami",
-    title1: "A Private Escape",
+    title1: "A Private Space",
     title2: "Between Forest and River",
-    text: `Tezami is a two-storey private villa nestled in the natural
-landscape of Tsavkisi. Surrounded by forest, flowing river and
-mountain views, it offers complete privacy and refined comfort.
-Designed for slow mornings and unforgettable evenings.`,
+    text: `Tezami is a two-storey private villa nestled in the Tbilisi 
+National Park. Surrounded by forest, river and 
+mountain views, it offers complete privacy and refined comfort. 
+Designed for calm mornings and unforgettable evenings.`,
     f1: "Private Pool",
     f2: "2 Floors",
     f3: "Mountain Views",
   },
   RU: {
     small: "О Tezami",
-    title1: "Частное пространство",
-    title2: "между лесом и рекой",
-    text: `Tezami — это двухэтажная частная вилла,
-расположенная в природном ландшафте Цавкиси.
-Окруженная лесом, рекой и видом на горы,
-она предлагает полную приватность и комфорт.
-Идеальное место для спокойных утр и уютных вечеров.`,
-    f1: "Частный бассейн",
+    title1: "Личное пространство",
+    title2: "Между лесом и рекой",
+    text: `Tezami — это двухэтажная частная вилла, расположенная в Тбилисском 
+национальном парке. Окруженное лесом, рекой и горными пейзажами, 
+это пространство предлагает полную уединенность и изысканный комфорт. 
+Создано для спокойных утр и незабываемых вечеров.`,
+    f1: "Личный бассейн",
     f2: "2 этажа",
     f3: "Вид на горы",
   },
@@ -52,7 +51,7 @@ export default function About() {
     <>
       <section className="about" id="about">
         <div className="about-container">
-          <img src="/view.webp" alt="Tezami Villa" />
+          <img src="/view.webp" alt="Tezami Villa" className="img" />
 
           <div>
             <div className="about-small">{t.small}</div>

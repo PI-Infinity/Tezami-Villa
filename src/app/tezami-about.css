@@ -69,12 +69,17 @@
 }
 
 @media (max-width: 1100px) {
+  .about {
+    padding: 120px 0 40px 0;
+  }
   .about-container {
     grid-template-columns: 1fr;
     gap: 60px;
+    padding: 0 24px;
   }
 
   .about img {
     height: 450px;
+    border-radius: 16px;
   }
 }

@@ -5,25 +5,30 @@ import "../app/tezami-hero.css";
 
 const translations: any = {
   GE: {
-    subtitle: "აუზი • მთის ვილა",
-    location: "წყავკისი • ტყე • მდინარე • მთები",
+    subtitle: "ვილა მთაში • თბობადი აუზი",
+    location: "საბადურის ტყე • მდინარე",
     cta: "დაჯავშნა",
   },
   EN: {
-    subtitle: "Private Pool Mountain Villa",
-    location: "Tskhvarichamia • Forest • River • Mountains",
-    cta: "Reserve Villa",
+    subtitle: "Mountain Villa • Heated Pool",
+    location: "Sabaduri Forest • River",
+    cta: "Book Now",
   },
   RU: {
-    subtitle: "Приватный бассейн • Горная Вилла",
-    location: "Цхваричамия • Лес • Река • Горы",
-    cta: "Забронировать виллу",
+    subtitle: "Горная вилла • Подогреваемый бассейн",
+    location: "Сабадурский лес • Река",
+    cta: "Забронировать",
   },
 };
 
 export default function Hero() {
   const { language } = useAppContext();
   const t = translations[language.toUpperCase()] || translations.GE;
+
+  const whatsappNumber = "995599205588";
+  const whatsappText =
+    "Hello, I would like to check availability for Tezami Villa.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
 
   return (
     <>
@@ -37,7 +42,7 @@ export default function Hero() {
           <div className="subtitle">{t.subtitle}</div>
           <div className="location">{t.location}</div>
 
-          <Link href="#contact" className="cta">
+          <Link href={whatsappUrl} className="cta" target="_blank">
             {t.cta}
           </Link>
         </div>

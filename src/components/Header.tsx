@@ -10,14 +10,29 @@ import { useAppContext } from "@/context/app";
 import "../app/tezami-header.css";
 
 const translations: any = {
-  GE: {
+  KA: {
     book: "დაჯავშნა",
+    nav: [
+      { name: "მთავარი", href: "/" },
+      { name: "გალერეა", href: "#gallery" },
+      { name: "კონტაქტი", href: "#contact" },
+    ],
   },
   EN: {
-    book: "Reserve",
+    book: "Book Now",
+    nav: [
+      { name: "Home", href: "/" },
+      { name: "Gallery", href: "#gallery" },
+      { name: "Contact", href: "#contact" },
+    ],
   },
   RU: {
-    book: "Бронировать",
+    book: "Забронировать",
+    nav: [
+      { name: "Главная", href: "/" },
+      { name: "Галерея", href: "#gallery" },
+      { name: "Контакты", href: "#contact" },
+    ],
   },
 };
 
@@ -30,8 +45,8 @@ export default function TezamiHeader() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const currentLang = language?.toUpperCase() || "GE";
-  const t = translations[currentLang] || translations.GE;
+  const currentLang = language?.toUpperCase() || "KA";
+  const t = translations[currentLang] || translations.KA;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -49,6 +64,11 @@ export default function TezamiHeader() {
     setMobileOpen(false);
   };
 
+  const whatsappNumber = "995599205588";
+  const whatsappText =
+    "Hello, I would like to check availability for Tezami Villa.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
   return (
     <>
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
@@ -64,13 +84,25 @@ export default function TezamiHeader() {
             />
           </Link>
 
+          {/* დესკტოპ ნავიგაციის ლინკები */}
+          <nav
+            className="desktop-nav"
+            style={{ display: "flex", gap: "1.5rem" }}
+          >
+            {t.nav.map((item: any, index: number) => (
+              <Link key={index} href={item.href} className="nav-link">
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+
           {/* მარჯვენა მხარე: ენები და ქმედება */}
           <nav
             className="nav"
             style={{ display: "flex", alignItems: "center", gap: "2rem" }}
           >
             <div className="lang">
-              {["GE", "EN", "RU"].map((l) => (
+              {["KA", "EN", "RU"].map((l) => (
                 <button
                   key={l}
                   className={currentLang === l ? "active" : ""}
@@ -81,7 +113,7 @@ export default function TezamiHeader() {
               ))}
             </div>
 
-            <Link href="#contact" className="cta">
+            <Link href={whatsappUrl} className="cta" target="_blank">
               {t.book}
             </Link>
           </nav>
@@ -93,11 +125,37 @@ export default function TezamiHeader() {
         </div>
       </header>
 
-      {/* მობილური მენიუ (ენების გადასართავად და დასაჯავშნად) */}
-      <div
-        style={{ zIndex: "100" }}
-        className={`mobile-menu ${mobileOpen ? "open" : ""}`}
-      >
+      {/* მობილური მენიუ */}
+      <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
+        {/* მობილურის ნავ აითემები */}
+        <nav
+          className="mobile-nav-links"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1.5rem",
+            marginBottom: "2.5rem",
+          }}
+        >
+          {t.nav.map((item: any, index: number) => (
+            <Link
+              key={index}
+              href={item.href}
+              className="mobile-nav-link"
+              onClick={() => setMobileOpen(false)}
+              style={{
+                color: "white",
+                fontSize: "1.3rem",
+                textDecoration: "none",
+              }}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+
+        {/* მობილურის ენები */}
         <div
           className="lang"
           style={{
@@ -107,20 +165,21 @@ export default function TezamiHeader() {
             marginBottom: "2rem",
           }}
         >
-          {["GE", "EN", "RU"].map((l) => (
+          {["KA", "EN", "RU"].map((l) => (
             <button
               key={l}
               className={currentLang === l ? "active" : ""}
               onClick={() => changeLanguage(l.toLowerCase())}
-              style={{ color: "white", fontSize: "1.2rem" }}
             >
               {l}
             </button>
           ))}
         </div>
 
+        {/* მობილურის CTA (დაჯავშნა) */}
         <Link
-          href="#contact"
+          href={whatsappUrl}
+          target="_blank"
           className="cta"
           onClick={() => setMobileOpen(false)}
           style={{
