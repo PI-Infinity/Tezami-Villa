@@ -74,7 +74,7 @@ export default function TezamiHeader() {
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
         <div className="container" style={{ justifyContent: "space-between" }}>
           {/* მხოლოდ ლოგო, რომელიც გადადის მთავარ გვერდზე */}
-          <Link href="/" className="logo">
+          <Link href={`/${language}`} className="logo">
             <Image
               src="/tezami-logo.png"
               alt="Tezami Villa"
